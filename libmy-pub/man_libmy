@@ -1,0 +1,130 @@
+void	my_putchar(int fd, char c);
+write c on fd
+
+void	my_put_nbr(int fd, int nb);
+write nb on fd
+
+void	my_put_nbr_double(int fd, double nb);
+write nb on fd
+
+void	my_put_nbr_base(int fd, int nb, char *base);
+write nb on fd in base base
+
+void	my_putstr(int fd, char *str);
+write str on fd
+
+char	*my_strcat(char *s1, char *s2);
+concat s1 and s2 and return the nez string
+
+char	*my_strncat(char *s1, char *s2, int size);
+concat s1 and s2 while string len is lower than size and return the nez string
+
+void	my_strcpy(char *s1, char *s2);
+copy s2 in s1
+
+void	my_strncpy(char *s1, char *s2, int size);
+copy s2 in s1 while string len is lower than size
+
+int	my_strcmp(char *s1, char *s2);
+compare s1 and s2 and return the difference
+
+int	my_strncmp(char *s1, char *s2, int size);
+compare s1 and s2 on n char and return the difference
+
+int	my_strstr(char *s1, char *s2);
+search for s2 in s1
+
+int	my_strlen(char *str);
+return len of str
+
+double	my_get_nbr(char *str);
+convert a string to double
+
+int	my_get_nbr_hex(char *str);
+convert a string to int from hexadecimal base
+
+int	my_basecmp(char c, char *base);
+return the value of c in base
+
+double	my_get_nbr_base(char *str, char *base);
+convert a string to double from base base
+
+void	*xmalloc(size_t size);
+alloc memory with error chek
+
+void	*xfree(void *p);
+free p if p != NULL and return NULL
+
+void	*my_freetab(void **tableau);
+free tableau if tableau != NULL and return NULL
+
+void	my_swap(int *a, int *b);
+invert a and b
+
+char	*get_next_line(int fd);
+read a line on fd and return the line
+
+char	**my_str_to_wordtab(char *str);
+convert string str to a word tab
+
+void	my_puttab(int fd, char **tableau);
+write tableau on fd with \n between each line
+
+void	xwrite(int fd, char *str, int size);
+write size char from str on fd and chek return value
+
+void	xread(int fd, char *buffer, int size);
+read size char from fd to buffer and chek return value
+
+void	my_put_space(int fd, int nb);
+write nb spaces on fd
+
+void	my_printf(char *str, ...);
+write str with arguments after a % on fd (stdout by default)
+      "%F"	change fd
+      "%C"	format text (WHITE, BLACK, RED, GREEN, YELLOW, BLUE, CYAN, GREY, BOLDGREY, BOLD, UNDERLINE, BLINK and HIGHLIGHT are set in libmy.h)
+      "%c"	put a char
+      "%d"	put an int
+      "%X"	put an int in hexadecimal
+      "%o"	put an int in octal
+      "%b"	put an int in binar
+      "%s"	put a string
+      "%ms"	put m characters of a string (add spaces if the string is too short)
+      "%S"	put a string (escape spaces)
+      "%t"	put a string tab
+      "% "	put n spaces
+      "%f"	put a double
+reset the color to WHITE at the end
+this printf does not bufferise
+
+void	my_put_color(int fd, int color);
+write color on fd
+
+void	my_putwarn(char *str, ...);
+like my_printf but write on 2 by default and write a '\n' at the end. return -1
+
+void	my_puterror(char *str, ...);
+like my_printf but write on 2 by default, write a '\n' and exit at the end
+
+void *	my_ls(const char * path, int flags, char **ls_flags);
+return the list of files and directory in path
+      LIST	return a t_lslist *
+      STRING	return a char *
+      PRINT	does not return anything, just print like ls -l
+actualy, ls_flags do nothing, it is WIP
+by default return a char * wich is the standard output of ls -l
+
+char *	line_edit(int fd, char *prompt);
+read on fd with line edit printing prompt and the buffer in real time
+
+void	dump_history();
+print the history of line_edit
+
+void	free_history();
+free line_edit's history
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  Credits : Valentin Combes
+
+  Credit wanted but not needed

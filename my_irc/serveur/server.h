@@ -1,0 +1,78 @@
+/*
+** server.h for my_irc in /home/combes_v//Proj/my_irc
+** 
+** Made by valentin combes
+** Login   <combes_v@epitech.net>
+** 
+** Started on  Wed Apr 18 10:29:11 2012 valentin combes
+** Last update Sun Apr 22 23:18:08 2012 quentin guay
+*/
+
+#ifndef __SERVER_H__
+# define __SERVER_H__
+
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <sys/select.h>
+# include <netdb.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <signal.h>
+# include "../client/aff.h"
+
+typedef	struct	s_buffer
+{
+  char		buffer[BUF_SIZE];
+  int		rc;
+  int		wc;
+}		t_buf;
+
+typedef	struct		s_client
+{
+  int			cs;
+  int			clen;
+  char			*name;
+  char			*addr;
+  char			*channel;
+  struct s_client	*prev;
+  struct s_client	*next;
+  struct sockaddr_in	sinc;
+}			t_client;
+
+t_client	**g_clients;
+
+int    create_sock(int *sock, int port);
+void   free_clients(t_client *clients);
+void   add_client(t_client **clients, t_client * new);
+void   check_clients(t_client **clients, int sock);
+void   join_channel(char *buffer, t_client **clients, int fd_good);
+void   part_channel(char *buffer, t_client **clients, int fd_good);
+void   users(t_client **clients, int fd_good);
+void   print_message(char *buffer, t_client **clients, int fd_good);
+void   private_message(char *buffer, t_client **clients, int fd_good);
+void   list_channels(char *buffer, t_client **clients, int fd_good);
+void   to_execute(char *buffer, t_client **clients, int fd_good);
+int    manage_client(int sock, t_client **clients);
+void   client_quit(t_client **clients, int fd_good);
+void   handler(int s);
+void   init_client(t_client **new, int *rc, int *wc);
+int    ini_print_msg(int *wc, char **msg, t_client **tmp, t_client **clients);
+int    sec_print_msg(int fd_good, char **name, t_client **tmp);
+int    ini_check_clients(struct sockaddr_in *acc, int *wc, int *rc, int *max);
+fd_set check_p1(int sock, t_client **tmp, int *max_fd);
+int    check_p2(t_client **tmp, t_client **clients, int *fd_good, fd_set *all);
+void   check_p3(char* msg, t_client *tmp, int fd_good, t_client **clients);
+void   nick(char *buffer, t_client **clients, int fd_good);
+
+
+#endif

@@ -1,0 +1,60 @@
+/*
+** my_getnbr.c for eval_expr in /home/barre-_t//hl/piscine/eval_expr
+** 
+** Made by thibault barre-villeneuve
+** Login   <barre-_t@epitech.net>
+** 
+** Started on  Thu Oct 21 13:58:14 2010 thibault barre-villeneuve
+** Last update Tue Nov  2 16:24:02 2010 marie baudy
+*/
+
+#include "my.h"
+
+char	*my_itoa(int nb)
+{
+  int	i[2] = {1000000000, 0};
+  char	*result;
+
+  result = my_malloc(11);
+  if (nb < 0)
+    {
+      result[0] = '-';
+      i[1] = 1;
+      nb = nb * (-1);
+    }
+  if (nb == 0)
+    {
+      my_strcpy(result, "0\0");
+      return (result);
+    }
+  while (i[0] > 0)
+    {
+      if (nb / i[0] != 0)
+	{
+	  result[i[1]] = '0' + (nb / i[0]) - ((nb / (i[0] * 10)) * 10);
+	  i[1] = i[1] + 1;
+	}
+      i[0] = i[0] / 10;
+    }
+  return (result);
+}
+
+char	*my_malloc(unsigned int size)
+{
+  int	index;
+  char	*str;
+
+  str = malloc(size);
+  if (str == 0)
+    {
+      my_putstr("Error with malloc\n");
+      return (0);
+    }
+  index = 0;
+  while (index < size)
+    {
+      str[index] = '\0';
+      index ++;
+    }
+  return (str);
+}

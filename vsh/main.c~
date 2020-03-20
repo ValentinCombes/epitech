@@ -1,0 +1,10 @@
+#include "libmy.h"
+
+int	main()
+{
+  char	*s = NULL;
+  char	*prompt = my_strcreat("\33[1m\33[34m~> \33[0m");
+
+  s = line_edit(0, prompt);
+  my_printf("\n");
+}
